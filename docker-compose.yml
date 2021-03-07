@@ -1,0 +1,18 @@
+version: '2.4'
+services:
+  envoy-proxy:
+    build: 
+      context: envoy-proxy
+    ports:
+    - 8080:8080
+    - 9901:9901
+    depends_on: 
+    - todo-server
+  todo-server:
+    build: todo-server
+  todo-client:
+    build: todo-client
+    ports:
+      - 8081:80
+    depends_on: 
+    - todo-server
